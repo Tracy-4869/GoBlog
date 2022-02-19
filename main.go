@@ -6,10 +6,6 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-type User struct {
-	Id int
-}
-
 func init() {
 	mysqlDriver := beego.AppConfig.String("mysqldriver")
 	mysqlHost := beego.AppConfig.String("mysqlhost")
@@ -20,8 +16,6 @@ func init() {
 	charset := beego.AppConfig.String("charset")
 
 	datasource := mysqlUser + ":" + mysqlPass + "@tcp(" + mysqlHost + ":" + mysqlPort + ")/" + dataBase + "?charset=" + charset
-
-	orm.RegisterModel(new(User))
 
 	orm.RegisterDriver(mysqlDriver, orm.DRMySQL)
 	orm.RegisterDataBase("default", mysqlDriver, datasource)
