@@ -32,3 +32,9 @@ func GetAdminList()([]Admin, error) {
 	_, err := orm.NewOrm().QueryTable("admin").All(&adminList)
 	return adminList, err
 }
+
+// 添加管理员
+func AddAdminInfo(admin Admin) error {
+	_, err := orm.NewOrm().Insert(&admin)
+	return err
+}

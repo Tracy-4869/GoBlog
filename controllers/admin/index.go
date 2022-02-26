@@ -12,11 +12,6 @@ type IndexController struct {
 	beego.Controller
 }
 
-type Resp struct {
-	Stat uint8  `json:"stat"`
-	Msg  string `json:"msg"`
-}
-
 // 后台首页 登录页面
 func (c *IndexController) Index() {
 	c.Layout = "admin/index.html"
@@ -50,7 +45,7 @@ func (c *IndexController) Login() {
 	token := c.createToken(userName, passWord)
 	c.setLoginSession(userName, token)
 	c.setLoginCookie(userName, token)
-	
+
 	c.Data["json"] = resp
 	c.ServeJSON()
 }
