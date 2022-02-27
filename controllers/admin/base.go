@@ -62,6 +62,7 @@ func (c *BaseController) RespJson(stat uint8, msg string) {
 	}
 	c.Data["json"] = resp
 	c.ServeJSON()
+	c.StopRun()
 }
 
 // post判断

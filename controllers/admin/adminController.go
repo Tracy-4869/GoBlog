@@ -39,10 +39,21 @@ func (c *AdminController) Add() {
 		}
 		c.RespJson(StatOne, "add admin successful")
 	}
-
 	c.Data["statusMap"] = StatusMap
 	c.Data["adminLevelMap"] = adminLevelMap
 
 	c.Layout = "admin/admin/add.html"
 	c.TplName = "admin/header.html"
+}
+
+// 管理员删除
+func (c *AdminController) DeleteAdmin() {
+	id, err := c.GetInt("id")
+	if err != nil {
+		log.Printf("get id error: %s", err)
+	}
+	if deleteErr := models.DeleteAdminById(id); deleteErr != nil {
+		log.Printf("delete admin by id error: %s", deleteErr)
+	}
+	c.Redirect("/admin/list", 302)
 }

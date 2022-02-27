@@ -17,5 +17,7 @@ func init() {
 	beego.Router("/admin/list", &admin.AdminController{}, "get:List")
 	// 管理员添加
 	beego.Router("/admin/add", &admin.AdminController{}, "get,post:Add")
+	// 管理员删除
+	beego.Router("/admin/delete", &admin.AdminController{}, "get,delete:DeleteAdmin")
 
 }

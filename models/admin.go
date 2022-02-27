@@ -38,3 +38,9 @@ func AddAdminInfo(admin Admin) error {
 	_, err := orm.NewOrm().Insert(&admin)
 	return err
 }
+
+// 删除管理员
+func DeleteAdminById(id int) error {
+	_, err := orm.NewOrm().Delete(&Admin{Id: uint(id)})
+	return err
+}

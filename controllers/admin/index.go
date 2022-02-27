@@ -46,6 +46,7 @@ func (c *IndexController) Login() {
 	c.setLoginSession(userName, token)
 	c.setLoginCookie(userName, token)
 
+	c.SetData(userName)
 	c.Data["json"] = resp
 	c.ServeJSON()
 }
