@@ -22,8 +22,22 @@ func (u *Admin) TableEngine() string {
 
 // 通过用户名获取用户信息
 func GetAdminInfoByName(userName string) (admin Admin, err error) {
-	err = orm.NewOrm().QueryTable(&admin).Filter("name", userName).Filter("status", 1).One(&admin)
+	err = orm.NewOrm().QueryTable(&admin).Filter("name", userName).One(&admin)
 	return
+}
+
+// 通过管理员id获取管理员信息
+func GetAdminInfoById(id string) (Admin, error) {
+	admin := Admin{}
+	err := orm.NewOrm().QueryTable(&admin).Filter("id", id).One(&admin)
+	return admin, err
+}
+
+// 通过管理员用户名获取管理员等级
+func GetAdminGradeByName(userName string) (int, error) {
+	admin := Admin{}
+	err := orm.NewOrm().QueryTable(&admin).Filter("name", userName).One(&admin)
+	return int(admin.Grade), err
 }
 
 // 获取所有管理员信息
@@ -36,6 +50,12 @@ func GetAdminList()([]Admin, error) {
 // 添加管理员
 func AddAdminInfo(admin Admin) error {
 	_, err := orm.NewOrm().Insert(&admin)
+	return err
+}
+
+// 管理员信息更改
+func EditAdmin(admin Admin) error {
+	_, err := orm.NewOrm().Update(&admin)
 	return err
 }
 

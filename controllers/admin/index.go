@@ -41,6 +41,12 @@ func (c *IndexController) Login() {
 		resp.Stat = 1
 	}
 
+	// 冻结账号登录处理
+	if admin.Status == 2 {
+		resp.Msg = "该账号已被冻结"
+		resp.Stat = 0
+	}
+
 	// 保存session和cookie
 	token := c.createToken(userName, passWord)
 	c.setLoginSession(userName, token)
