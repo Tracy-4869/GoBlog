@@ -5,10 +5,19 @@ import (
 	"goblog/utils"
 	"log"
 	"strconv"
+	"time"
 )
 
 type AdminController struct {
 	BaseController
+}
+
+type AdminList struct {
+	Id uint `json:"id"`
+	Name string `json:"name"`
+	Grade string `json"grade"`
+	Status string `json:"status"`
+	CreateTime time.Time `json:"createTime"`
 }
 
 // 管理员列表
@@ -17,7 +26,23 @@ func (c *AdminController) List() {
 	if err != nil {
 		log.Printf("get adminList error:%s", err)
 	}
-	c.Data["adminList"] = adminList
+	respAdminList := make([]AdminList, len(adminList))
+	for i, v := range adminList {
+		respAdminList[i].Id = v.Id
+		respAdminList[i].Name = v.Name
+		if v.Grade == 1 {
+			respAdminList[i].Grade = "超级管理员"
+		} else {
+			respAdminList[i].Grade = "普通管理员"
+		}
+		if v.Status == 1 {
+			respAdminList[i].Status = "正常"
+		} else {
+			respAdminList[i].Status = "冻结"
+		}
+		respAdminList[i].CreateTime = v.CreateTime
+	}
+	c.Data["adminList"] = respAdminList
 	c.Layout = "admin/admin/list.html"
 	c.TplName = "admin/header.html"
 

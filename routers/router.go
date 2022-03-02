@@ -21,5 +21,6 @@ func Init() {
 	beego.Router("/admin/edit", &admin.AdminController{}, "get,post:Edit")
 	// 管理员删除
 	beego.Router("/admin/delete", &admin.AdminController{}, "get,delete:DeleteAdmin")
+	// 
 
 }
