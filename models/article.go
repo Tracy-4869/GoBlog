@@ -1,6 +1,10 @@
 package models
 
-import "time"
+import (
+	"time"
+
+	"github.com/astaxie/beego/orm"
+)
 
 type Article struct {
 	Id         uint      `orm:"column(id); pk; auto; description(主键);"form:"-"`
@@ -18,4 +22,9 @@ func (u *Article) TableEngine() string {
 	return "INNODB"
 }
 
-
+// 获取所有文章
+func GetArticleList() ([]Article, error) {
+	articleList := []Article{}
+	_, err := orm.NewOrm().QueryTable("article").All(&articleList)
+	return articleList, err
+}

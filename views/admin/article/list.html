@@ -10,7 +10,7 @@
                     <table class="layui-table layui-form">
                         <thead>
                         <tr>
-                            <th>ID</th>
+                            <!-- <th>ID</th> -->
                             <th>标签名</th>
                             <th>文章标题</th>
                             <th>文章作者</th>
@@ -21,7 +21,7 @@
                         <tbody>
                         {{range .articleList}}
                             <tr>
-                                <td>{{.Id}}</td>
+                                <!-- <td>{{.Id}}</td> -->
                                 <td>{{index $.tagMap .TagId}}</td>
                                 <td>{{.Title}}</td>
                                 <td>{{.Author}}</td>

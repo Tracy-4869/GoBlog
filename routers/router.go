@@ -23,4 +23,8 @@ func Init() {
 	beego.Router("/tag/add", &admin.TagController{}, "get,post:Add")
 	beego.Router("/tag/edit", &admin.TagController{}, "get,post:Edit")
 	beego.Router("/tag/delete", &admin.TagController{}, "get:DeleteTag")
+	// 文章
+	beego.Router("/article/list", &admin.ArticleController{}, "get:List")
+	beego.Router("/article/add", &admin.ArticleController{}, "get,post:Add")
+
 }
