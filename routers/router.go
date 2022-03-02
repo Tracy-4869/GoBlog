@@ -13,14 +13,14 @@ func Init() {
 	beego.Router("/login", &admin.IndexController{}, "post:Login")
 	// 登录成功主页
 	beego.Router("/main", &admin.MainController{}, "get:Index")
-	// 管理员列表
+	// 管理员
 	beego.Router("/admin/list", &admin.AdminController{}, "get:List")
-	// 管理员添加
 	beego.Router("/admin/add", &admin.AdminController{}, "get,post:Add")
-	// 管理员编辑
 	beego.Router("/admin/edit", &admin.AdminController{}, "get,post:Edit")
-	// 管理员删除
 	beego.Router("/admin/delete", &admin.AdminController{}, "get,delete:DeleteAdmin")
-	// 
-
+	// 标签
+	beego.Router("/tag/list", &admin.TagController{}, "get:List")
+	beego.Router("/tag/add", &admin.TagController{}, "get,post:Add")
+	beego.Router("/tag/edit", &admin.TagController{}, "get,post:Edit")
+	beego.Router("/tag/delete", &admin.TagController{}, "get:DeleteTag")
 }

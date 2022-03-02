@@ -4,6 +4,7 @@ import (
 	"goblog/models"
 	"goblog/utils"
 	"log"
+	"net/http"
 	"strconv"
 	"time"
 )
@@ -26,23 +27,9 @@ func (c *AdminController) List() {
 	if err != nil {
 		log.Printf("get adminList error:%s", err)
 	}
-	respAdminList := make([]AdminList, len(adminList))
-	for i, v := range adminList {
-		respAdminList[i].Id = v.Id
-		respAdminList[i].Name = v.Name
-		if v.Grade == 1 {
-			respAdminList[i].Grade = "超级管理员"
-		} else {
-			respAdminList[i].Grade = "普通管理员"
-		}
-		if v.Status == 1 {
-			respAdminList[i].Status = "正常"
-		} else {
-			respAdminList[i].Status = "冻结"
-		}
-		respAdminList[i].CreateTime = v.CreateTime
-	}
-	c.Data["adminList"] = respAdminList
+	c.Data["statusMap"] = StatusMap
+	c.Data["adminLevelMap"] = adminLevelMap
+	c.Data["adminList"] = adminList
 	c.Layout = "admin/admin/list.html"
 	c.TplName = "admin/header.html"
 
@@ -152,5 +139,5 @@ func (c *AdminController) DeleteAdmin() {
 			log.Printf("delete admin by id:%d  error: %s", id, deleteErr)
 		}
 	}
-	c.Redirect("/admin/list", 302)
+	c.Redirect("/admin/list", http.StatusFound)
 }

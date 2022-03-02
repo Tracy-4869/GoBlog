@@ -16,7 +16,7 @@ type Admin struct {
 }
 
 // 定义表的存储引擎
-func (u *Admin) TableEngine() string {
+func (c *Admin) TableEngine() string {
 	return "INNODB"
 }
 
