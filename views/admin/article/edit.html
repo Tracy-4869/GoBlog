@@ -3,14 +3,14 @@
 <div class="layui-fluid">
     <div class="layui-row">
         <form class="layui-form">
-            <input type="text" name="id" value="{{$.artList.Id}}" hidden>
+            <input type="text" name="id" value="{{$.article.Id}}" hidden>
             <div class="layui-form-item">
                 <label for="title" class="layui-form-label">
                     <span class="x-red">*</span>文章标题
                 </label>
                 <div class="layui-input-block">
                     <input type="text" id="title" name="title" required="" lay-verify="required"
-                           autocomplete="off" class="layui-input" value="{{$.artList.Title}}">
+                           autocomplete="off" class="layui-input" value="{{$.article.Title}}">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -18,7 +18,7 @@
                     <span class="x-red">*</span>文章内容
                 </label>
                 <div class="layui-input-block">
-                    <textarea name="content" placeholder="请输入内容" class="layui-textarea" lay-verify="required">{{$.artList.Content}}</textarea>
+                    <textarea name="content" placeholder="请输入内容" class="layui-textarea" lay-verify="required">{{$.article.Content}}</textarea>
                 </div>
             </div>
             <div class="layui-form-item">
@@ -27,7 +27,7 @@
                 </label>
                 <div class="layui-input-inline">
                     <input type="text" id="author" name="author" required="" lay-verify="required"
-                           autocomplete="off" class="layui-input" value="{{$.artList.Author}}">
+                           autocomplete="off" class="layui-input" value="{{$.article.Author}}">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -36,7 +36,7 @@
                     <select name="tag_id" lay-verify="required">
                         <option value=""></option>
                         {{range .tagList}}
-                            <option value="{{.Id}}" {{if eq .Id $.artList.TagId}}selected{{end}}>{{.Name}}</option>
+                            <option value="{{.Id}}" {{if eq .Id $.article.TagId}}selected{{end}}>{{.Name}}</option>
                         {{end}}
                     </select>
                 </div>
@@ -45,7 +45,7 @@
                 <label class="layui-form-label"><span class="x-red">*</span>状态</label>
                 <div class="layui-input-block">
                     {{range $i, $v := .statusMap}}
-                        <input type="radio" name="status" lay-skin="primary" title="{{$v}}"  value="{{$i}}" {{if eq $i $.artList.Status}}checked{{end}}>
+                        <input type="radio" name="status" lay-skin="primary" title="{{$v}}"  value="{{$i}}" {{if eq $i $.article.Status}}checked{{end}}>
                     {{end}}
                 </div>
             </div>
@@ -53,7 +53,7 @@
                 <label for="L_repass" class="layui-form-label">
                 </label>
                 <button  class="layui-btn" lay-filter="add" lay-submit="">
-                    增加
+                    更新
                 </button>
             </div>
         </form>

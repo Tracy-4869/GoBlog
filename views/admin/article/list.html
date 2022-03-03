@@ -29,8 +29,11 @@
                                 <td>{{.CreateTime}}</td>
                                 <td class="td-manage">
                                     <a title="编辑"  onclick="xadmin.open('编辑文章','/article/edit?id={{.Id}}')" href="javascript:;">
-                                        <i class="layui-icon">&#xe642;</i>
+                                        <i class="layui-icon">编辑</i>
                                     </a>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href='javascript:if(confirm("确定删除吗？")){location="/article/delete?id={{.Id}}"}'>
+                                        <i class="layui-icon">删除</i>
                                 </td>
                             </tr>
                         {{end}}

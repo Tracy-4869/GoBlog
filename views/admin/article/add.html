@@ -44,7 +44,7 @@
                 <label class="layui-form-label"><span class="x-red">*</span>状态</label>
                 <div class="layui-input-block">
                     {{range $i, $v := .statusMap}}
-                        <input type="radio" name="status" lay-skin="primary" title="{{$v}}"  value="{{$i}}" checked="">
+                        <input type="radio" name="status" lay-skin="primary" title="{{$v}}"  value="{{$i}}">
                     {{end}}
                 </div>
             </div>

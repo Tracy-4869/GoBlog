@@ -26,5 +26,7 @@ func Init() {
 	// 文章
 	beego.Router("/article/list", &admin.ArticleController{}, "get:List")
 	beego.Router("/article/add", &admin.ArticleController{}, "get,post:Add")
+	beego.Router("/article/edit", &admin.ArticleController{}, "get,post:Edit")
+	beego.Router("/article/delete", &admin.ArticleController{}, "get:DeleteArticle")
 
 }

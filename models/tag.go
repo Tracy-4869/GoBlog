@@ -41,7 +41,7 @@ func GetTagInfoById(id string) (ArticleTag, error) {
 
 // 更新标签信息
 func UpdateTagById(id, name, status string) error {
-	_, err := orm.NewOrm().QueryTable(new(ArticleTag)).Filter("id", id).Update(orm.Params{
+	_, err := orm.NewOrm().QueryTable("article_tag").Filter("id", id).Update(orm.Params{
 		"name": name,
 		"status": status,
 	})
@@ -53,3 +53,26 @@ func DeleteTagById(id int) error {
 	_, err := orm.NewOrm().Delete(&ArticleTag{Id: uint(id)})
 	return err
 }
+
+// 该标签下文章数量加1
+func AddTotalById(id uint) error {
+	_, err := orm.NewOrm().QueryTable("article_tag").Filter("id", id).Update(orm.Params{
+		"total": orm.ColValue(orm.ColAdd, 1),
+	})
+	return err
+}
+func AddTotalByStringId(id string) error {
+	_, err := orm.NewOrm().QueryTable("article_tag").Filter("id", id).Update(orm.Params{
+		"total": orm.ColValue(orm.ColAdd, 1),
+	})
+	return err
+}
+
+// 该标签下文章数量减1
+func MinusTotalById(id string) error {
+	_, err := orm.NewOrm().QueryTable("article_tag").Filter("id", id).Update(orm.Params{
+		"total": orm.ColValue(orm.ColMinus, 1),
+	})
+	return err
+}
+

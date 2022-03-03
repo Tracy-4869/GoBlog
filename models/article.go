@@ -28,3 +28,34 @@ func GetArticleList() ([]Article, error) {
 	_, err := orm.NewOrm().QueryTable("article").All(&articleList)
 	return articleList, err
 }
+
+// 添加文章
+func AddArticle(article Article) error {
+	_, err := orm.NewOrm().Insert(&article)
+	return err
+}
+
+// 通过id获取文章信息
+func GetArticleInfoById(id string) (Article, error) {
+	article := Article{}
+	err :=orm.NewOrm().QueryTable("article").Filter("id", id).One(&article)
+	return article, err
+}
+
+// 更新文章信息
+func UpdateArticleById(id, tag_id, title, content, author, status string) error {
+	_, err := orm.NewOrm().QueryTable(new(Article)).Filter("id", id).Update(orm.Params{
+		"tag_id": tag_id,
+		"title": title,
+		"content": content,
+		"author": author,
+		"status": status,
+	})
+	return err
+}
+
+// 删除文章
+func DeleteArticleById(id uint) error {
+	_, err := orm.NewOrm().Delete(&Article{Id: id})
+	return err
+}
