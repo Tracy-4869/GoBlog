@@ -2,6 +2,7 @@ package routers
 
 import (
 	"goblog/controllers/admin"
+	"goblog/controllers/home"
 
 	"github.com/astaxie/beego"
 )
@@ -28,5 +29,11 @@ func Init() {
 	beego.Router("/article/add", &admin.ArticleController{}, "get,post:Add")
 	beego.Router("/article/edit", &admin.ArticleController{}, "get,post:Edit")
 	beego.Router("/article/delete", &admin.ArticleController{}, "get:DeleteArticle")
+	// 个人简介
+
+	// 标签
+
+	// 前台首页
+	beego.Router("/", &home.HomeController{}, "get:Index")
 
 }
