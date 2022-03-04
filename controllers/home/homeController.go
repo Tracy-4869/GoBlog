@@ -1,6 +1,7 @@
 package home
 
 import (
+	"fmt"
 	"goblog/models"
 	"log"
 
@@ -24,7 +25,7 @@ func (c *HomeController) Index() {
 	if errTotal != nil {
 		log.Printf("get article count error: %s", errTotal)
 	}
-	
+	fmt.Println(tagList)
 	c.Data["tagList"] = tagList
 	c.Data["total"] = totalArticleCount
 	c.Data["articleList"] = articleList
