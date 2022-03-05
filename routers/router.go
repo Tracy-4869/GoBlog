@@ -31,7 +31,7 @@ func Init() {
 	beego.Router("/article/delete", &admin.ArticleController{}, "get:DeleteArticle")
 	// 个人简介
 
-	// 标签
+	// 链接
 
 	// 前台首页
 	beego.Router("/", &home.HomeController{}, "get:Index")
