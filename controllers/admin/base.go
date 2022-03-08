@@ -16,6 +16,13 @@ type Resp struct {
 	Msg  string `json:"msg"`
 }
 
+// 图片的格式
+var ImgExtName = map[string]string{
+	".jpg":  ".jpg",
+	".jpeg": ".jepg",
+	".png":  ".png",
+}
+
 // 定义状态常量及密钥
 const (
 	StatZero = 0

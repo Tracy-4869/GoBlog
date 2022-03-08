@@ -5,7 +5,7 @@
             <!--done-->
             <h3 class="catListTitle">公告</h3>
             <div id="blog-news">
-                <img src="../../static/images/bg.png">
+                <img src="../../static/images/black.jpg">
             </div>
             <div id="sidebar_c3"></div>
             <br />
@@ -14,10 +14,9 @@
                 <div class="catListEssay">
                     <h3 class="catListTitle">最新随笔</h3>
                     <ul>
-                        {{range $v := .topTenArt}}
-                            <li>
-                                <a href="/detail/{{$v.Id}}">{{$v.Title}}</a></li>
-                        {{end}}
+                        <li>
+                            <a href="/detail/{{$.topArticle.Id}}">{{$.topArticle.Title}}</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -29,7 +28,7 @@
                     <ul>
                         {{range .tagList}}
                             <li data-category-list-item-visible="true" style="display: block">
-                                <a href="/home/category/{{.Id}}" rel="" target="">{{.Name}}({{.Total}})</a></li>
+                                <a href="/category/{{.Id}}" rel="" target="">{{.Name}}({{.Total}})</a></li>
                         {{end}}
                         <!-- <a href="javascript:void(0)" onclick="sideColumnManager.loadMore(this)">更多</a></li> -->
                     </ul>

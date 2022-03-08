@@ -10,7 +10,7 @@
                     <table class="layui-table layui-form">
                         <thead>
                         <tr>
-                            <th>ID</th>
+                            <!-- <th>ID</th> -->
                             <th>姓名</th>
                             <th>链接地址</th>
                             <th>状态</th>
@@ -20,15 +20,18 @@
                         <tbody>
                         {{range .linksList}}
                             <tr>
-                                <td>{{.Id}}</td>
+                                <!-- <td>{{.Id}}</td> -->
                                 <td>{{.Name}}</td>
                                 <td>{{.Url}}</td>
                                 <td>{{index $.statusMap .Status}}</td>
                                 <td>{{.CreateTime}}</td>
                                 <td class="td-manage">
                                     <a title="编辑"  onclick="xadmin.open('编辑友情链接','/links/edit?id={{.Id}}')" href="javascript:;">
-                                        <i class="layui-icon">&#xe642;</i>
+                                        <i class="layui-icon">编辑</i>
                                     </a>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href='javascript:if(confirm("确定删除吗？")){location="/links/delete?id={{.Id}}"}'>
+                                        <i class="layui-icon">删除</i>
                                 </td>
                             </tr>
                         {{end}}

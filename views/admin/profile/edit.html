@@ -5,24 +5,24 @@
         <form class="layui-form">
             <input type="text" name="id" value="{{$.info.Id}}" hidden>
             <div class="layui-form-item">
-                <label for="username" class="layui-form-label">
-                    <span class="x-red">*</span>友情名
+                <label for="nickname" class="layui-form-label">
+                    <span class="x-red">*</span>昵称
                 </label>
                 <div class="layui-input-inline">
-                    <input type="text" id="name" name="name" required="" lay-verify="required"
-                           autocomplete="off" class="layui-input" value="{{$.info.Name}}">
+                    <input type="text" id="nickname" name="nickname" required="" lay-verify="required"
+                           autocomplete="off" class="layui-input" value="{{$.info.NickName}}">
                 </div>
                 <div class="layui-form-mid layui-word-aux">
                     <span class="x-red">*</span>
                 </div>
             </div>
             <div class="layui-form-item">
-                <label for="username" class="layui-form-label">
-                    <span class="x-red">*</span>友情地址
+                <label for="motto" class="layui-form-label">
+                    <span class="x-red">*</span>座右铭
                 </label>
                 <div class="layui-input-inline">
-                    <input type="text" id="url" name="url" required="" lay-verify="required"
-                           autocomplete="off" class="layui-input" value="{{$.info.Url}}">
+                    <input type="text" id="motto" name="motto" required="" lay-verify="required"
+                           autocomplete="off" class="layui-input" value="{{$.info.Motto}}">
                 </div>
                 <div class="layui-form-mid layui-word-aux">
                     <span class="x-red">*</span>
@@ -70,7 +70,7 @@
             //监听提交
             form.on('submit(add)',
                 function(data) {
-                    $.post('/links/edit', data.field, function(ret) {
+                    $.post('/profile/edit', data.field, function(ret) {
                         var icon = (ret.stat == 0) ? 5 : 6;  // 5：失败提示 6：成功提示
                         layer.msg(ret.msg, {icon: icon}, function() {
                             //关闭当前frame

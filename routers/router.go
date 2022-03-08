@@ -30,10 +30,19 @@ func Init() {
 	beego.Router("/article/edit", &admin.ArticleController{}, "get,post:Edit")
 	beego.Router("/article/delete", &admin.ArticleController{}, "get:DeleteArticle")
 	// 个人简介
-
+	beego.Router("/profile/list", &admin.ProfileController{}, "get:List")
+    beego.Router("/profile/add", &admin.ProfileController{}, "get,post:Add")
+    beego.Router("/profile/edit", &admin.ProfileController{}, "get,post:Edit")
+    beego.Router("/profile/delete", &admin.ProfileController{}, "get:DeleteProfile")
 	// 链接
-
+	beego.Router("/links/list", &admin.LinkController{}, "get:List")
+	beego.Router("/links/add", &admin.LinkController{}, "get,post:Add")
+	beego.Router("/links/edit", &admin.LinkController{}, "get,post:Edit")
+	beego.Router("/links/delete", &admin.LinkController{}, "get:DeleteLink")
 	// 前台首页
 	beego.Router("/", &home.HomeController{}, "get:Index")
-
+	// 文章详情
+	beego.Router("/detail/:id([0-9]+)", &home.HomeController{}, "get:Detail")
+	// 文章分类
+	beego.Router("/category/:id([0-9]+)", &home.HomeController{}, "get:Category")
 }

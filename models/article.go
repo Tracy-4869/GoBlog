@@ -66,3 +66,32 @@ func GetTotalArticleCount() (int64, error) {
 	count, err := orm.NewOrm().QueryTable(new(Article)).Filter("status", 1).Count()
 	return count, err
 }
+
+// 获取最新发布的文章
+func GetTopArticle() (Article, error) {
+	topArticle := Article{}
+	err := orm.NewOrm().QueryTable(new(Article)).Filter("status", 1).OrderBy("-id").Limit(1).One(&topArticle)
+	return topArticle, err
+}
+
+// 根据标签分类文章
+func GetArticleListByTagId(tagId string) ([]Article, error) {
+	article := []Article{}
+	_, err := orm.NewOrm().QueryTable(new(Article)).Filter("tag_id", tagId).Filter("status", 1).All(&article)
+	return article, err
+}
+
+// 阅读量加1
+func UpdateArticleReadNum(id string) error {
+	_, err := orm.NewOrm().QueryTable(new(Article)).Filter("id", id).Update(orm.Params{
+		"read_num": orm.ColValue(orm.ColAdd, 1),
+	})
+	return err
+}
+
+// 获取阅读量排名前3的文章
+func GetArticleTopThree() ([]Article, error) {
+	article := []Article{}
+	_, err := orm.NewOrm().QueryTable(new(Article)).Filter("status", 1).OrderBy("-read_num").Limit(3).All(&article)
+	return article, err
+}
