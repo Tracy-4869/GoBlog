@@ -12,9 +12,15 @@ type HomeController struct {
 }
 
 func (c *HomeController) Index() {
+	articleList := getArticleList()
+	for k, v := range articleList {
+		absRune := []rune(v.Content)
+		articleList[k].Abstract = string(absRune[:16])
+	}
+
 	c.Data["tagList"] = getTagList()
 	c.Data["total"] = getTotalArticleCount()
-	c.Data["articleList"] = getArticleList()
+	c.Data["articleList"] = articleList
 	c.Data["links"] = getLinkList()
 	c.Data["profile"] = getProfile()
 	c.Data["topArticle"] = getTopArticle()
@@ -31,13 +37,14 @@ func (c *HomeController) Index() {
 func (c *HomeController) Detail() {
 	id := c.Ctx.Input.Param(":id")
 
+	c.Data["total"] = getTotalArticleCount()
 	c.Data["tagList"] = getTagList()
 	c.Data["links"] = getLinkList()
 	c.Data["topArticle"] = getTopArticle()
 	c.Data["profile"] = getProfile()
 	c.Data["topTenViewArt"] = getArticleTopThree()
- 	c.Data["articleContent"] = getArticleInfoById(id)
-	
+	c.Data["articleContent"] = getArticleInfoById(id)
+
 	// 更新文章阅读量
 	updateArticleReadNum(id)
 

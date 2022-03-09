@@ -17,7 +17,7 @@ func Init() {
 
 	datasource := mysqlUser + ":" + mysqlPass + "@tcp(" + mysqlHost + ":" + mysqlPort + ")/" + dataBase + "?charset=" + charset
 
-	orm.RegisterModel(new(Admin), new(ArticleTag), new(Article), new(ArticleReadNum), new(Profile), new(Links))
+	orm.RegisterModel(new(Admin), new(ArticleTag), new(Article), new(Profile), new(Links))
 
 	orm.RegisterDriver(mysqlDriver, orm.DRMySQL)
 	orm.RegisterDataBase("default", mysqlDriver, datasource)
