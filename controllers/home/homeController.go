@@ -76,7 +76,7 @@ func (c *HomeController) Category() {
 }
 
 func getArticleList() []models.Article {
-	articleList, errArticle := models.GetArticleList()
+	articleList, errArticle := models.GetNormalArticleList()
 	if errArticle != nil {
 		log.Printf("get article list error: %s", errArticle)
 	}

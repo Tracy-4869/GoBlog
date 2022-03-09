@@ -30,6 +30,13 @@ func GetArticleList() ([]Article, error) {
 	return articleList, err
 }
 
+// 获取所有文章
+func GetNormalArticleList() ([]Article, error) {
+	articleList := []Article{}
+	_, err := orm.NewOrm().QueryTable("article").Filter("status", 1).OrderBy("-id").All(&articleList)
+	return articleList, err
+}
+
 // 添加文章
 func AddArticle(article Article) error {
 	_, err := orm.NewOrm().Insert(&article)
